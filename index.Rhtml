@@ -176,6 +176,72 @@ Have you read the posting guide?!!? &$%^&!%"!!
 
 </div>
 
+<div class="slide">
+<h1>Python</h1>
+<h2>Interative</h2>
+<p>Its another REPL</p>
+<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+>>> 1 + 2 * 3
+7
+>>>
+]]></script>
+<h2>Modular</h2>
+<p>Functionality is more structured into modules:</p>
+<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+>>> sqrt(2)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'sqrt' is not defined
+>>> import math
+>>> math.sqrt(2)
+1.4142135623730951
+>>> from math import sqrt
+>>> sqrt(2)
+1.4142135623730951
+]]></script>
+
+<h2>Vectors</h2>
+<p>There are "vectors" (called lists), but no implicit vectorisation:</p>
+<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+>>> x = [ 1, 2, 4, 8, 16 ]
+>>> math.sqrt(x)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: a float is required
+]]></script>
+
+<p>But there are syntactic helpers that are "pythonic" - this is a "list comprehension":</p>
+<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+>>> [math.sqrt(z) for z in x]
+[1.0, 1.4142135623730951, 2.0, 2.8284271247461903, 4.0]
+]]></script>
+<p>These can be quite complex:</p>
+<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+>>> [math.sqrt(z) for z in x if z > 3]
+[2.0, 2.8284271247461903, 4.0]
+]]></script>
+
+<h2>Functions</h2>
+<p>Just like R, you can define functions and call them:</p>
+<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+>>> def foo(x):
+...   return math.sqrt(x) * math.log(x)
+... 
+>>> foo(9)
+6.591673732008658
+]]></script>
+
+<h2>And all the other stuff...</h2>
+<ul>
+<li>Loops</li>
+<li>If-then-else</li>
+<li>Classes and Objects</li>
+</ul>
+
+
+</div>
+
+
 
 <!--begin.rcode endit,echo=FALSE,result="hide", cache=FALSE
 #save(list=c("bps","bpd","bpd2","bps2"),file="/tmp/run.RData")
