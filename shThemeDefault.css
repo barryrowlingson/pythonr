@@ -115,3 +115,7 @@
 .syntaxhighlighter .keyword {
   font-weight: bold !important;
 }
+
+.syntaxhighlighter table td.code .line {
+    padding: 0.2em 1em !important;
+}
