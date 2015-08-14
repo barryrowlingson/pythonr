@@ -1,0 +1,179 @@
+<!--begin.rcode init,echo=FALSE,result="hide"
+# build("./pythonr/index.Rhtml", "./templatr/inst/templates/pres1/","index.html",title="Python vs R")
+knitr::opts_chunk$set(comment=NA, prompt=TRUE, dev="CairoPNG", cache=TRUE)
+knitr::opts_knit$set(root.dir=wd)
+op = options()$continue
+options(continue=" ")
+grDevices::X11.options(type='cairo')
+library(readr)
+library(lubridate)
+library(stringr)
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+library(ggvis)
+library(rvest)
+library(testthat)
+library(devtools)
+library(testthat)
+library(magrittr)
+set.seed(310366)
+end.rcode-->
+
+<div class="slide" id="title">
+<h1>R vs Python</h1>
+<h2>Barry Rowlingson</h2>
+<h3>Lancaster University</h3>
+<p style="font-size: 40%">[next slide=right arrow, prev slide=left arrow, or click slide counter top-right for index]</p>
+</div>
+
+<div class="slide" id="first">
+<h1>Fight!</h1>
+<div class="left">
+<img class="fit" src="images/Rlogo.png" />
+</div>
+<div class="right">
+<img class="fit" src="images/pythonlogo.png" />
+</div>
+<h1>To the death!</h1>
+</div>
+
+<div class="slide">
+<h1>Begin Warriors!</h1>
+<img class="mainpic" src="images/fight1.jpg" />
+</div>
+
+<div class="slide">
+<h1>Begin Warriors!</h1>
+<img class="mainpic"  src="images/fight2.jpg" />
+</div>
+
+<div class="slide">
+<h1>R</h1>
+<p>
+<ul>
+<li>Evolved from "New S" (1988)</li>
+<li>"New S" Evolved from "Old S" (1976)</li>
+<li>Inspiration from LISP (1958)</li>
+</ul>
+</p>
+</div>
+
+<div class="slide">
+<h1>A little LISP</h1>
+<pre class="list">
+> (+ 1 2)
+3
+
+> (+ 6 (* 3 (- 8 12)))
+-6
+</pre>
+<p>R can be written a bit like this too!</p>
+<pre class="list">
+> `+`(1,2)
+[1] 3
+> `+`(6, `*`(3, `-`( 8, 12)))
+[1] -6
+</pre>
+<p>but not recommended, because R has "infix" notation:</p>
+<pre class="list">
+> (6 +  (3 * (8 - 12)))
+[1] -6
+</pre>
+<p>but sometimes infix isn't clear:</p>
+<pre class="list">
+> 6 + 3 * 8 - 12
+[1] 18
+</pre>
+</div>
+
+<div class="slide">
+<h1>So we all know R, right?</h1>
+<!-- begin.rcode
+x = 1:10
+y = 2 * x + rnorm(10, 0, 3)
+y
+m = lm(y~x)
+m
+end.rcode -->
+</div>
+
+<div class="slide">
+<h1>Why Do People Fall In Love With R?</h1>
+<h1 class="sub">Not an exhaustive list</h1>
+<h2>Interactivity</h2>
+<ul>
+<li>Its a REPL (Read-evaluate-print loop)</li>
+<li>Infix notation</li>
+<li>Functional notation</li>
+</ul>
+
+
+<h2>Vectorisation</h2>
+<!-- begin.rcode
+y + c(10,100)
+sqrt(y)
+end.rcode -->
+
+
+<h2>Graphics</h2>
+<!-- begin.rcode
+plot(x,y)
+abline(m)
+end.rcode -->
+
+<h2>Data Structures</h2>
+<ul>
+<li>Vectors</li>
+<li>Matrices</li>
+<li>Data Frames</li>
+</ul>
+
+<h2>CRAN</h2>
+<ul>
+<li>Now over 7000 packages</li>
+<li>Easy Installation</li>
+<li>Quality Control (to an extent)</li>
+</ul>
+
+</div>
+
+<div class="slide">
+<h1>Why Do Beginners Struggle With R?</h1>
+<h1 class="sub">Not an exhaustive list</h1>
+
+<h2>Inconsistencies</h2>
+<!--begin.rcode
+args(read.table)
+end.rcode-->
+
+<h2>Quirks</h2>
+<!--begin.rcode
+z=matrix(1:9,3,3)
+z[,1]
+z[,1,drop=FALSE]
+end.rcode-->
+
+<!--begin.rcode
+ages  = c(16,17,18,19)
+sample(ages)
+sample(ages[1:3])
+sample(ages[1:2])
+sample(ages[1:1])
+end.rcode-->
+
+<p>Definitive reference in 153 pages is:</p>
+<div class="cpic">
+<img class="mainpic" src="images/rinferno.png" />
+</div>
+<p>Free PDF from <code>http://www.burns-stat.com/documents/books/the-r-inferno/</code></p>
+
+<h2>Mailing Lists</h2>
+
+</div>
+
+
+<!--begin.rcode endit,echo=FALSE,result="hide", cache=FALSE
+#save(list=c("bps","bpd","bpd2","bps2"),file="/tmp/run.RData")
+options(continue=op)
+end.rcode-->
