@@ -174,6 +174,12 @@ end.rcode-->
 Have you read the posting guide?!!? &$%^&!%"!!
 </p>
 
+<h2>Lack of Speed</h2>
+<p>
+Why is my code so slooooowwww!!!!
+</p>
+
+
 </div>
 
 <div class="slide">
@@ -238,9 +244,60 @@ TypeError: a float is required
 <li>Classes and Objects</li>
 </ul>
 
-
 </div>
 
+<div class="slide">
+<h1>Why Do People Fall In Love With Python?</h1>
+<img class="mainpic" src="images/pythonflying.png" />
+
+<h2>Clean Syntax</h2>
+<p>Put this in a file called <code>sequence.py</code>:</p>
+<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+def fib(n):
+  a, b = 0, 1
+  while a < n:
+    print a,
+    a, b = b, a+b
+  print
+]]></script>
+
+<h2>Simple Modularity</h2>
+
+<p>Given <code>sequence.py</code> simply do:</p>
+<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+>>> from sequence import fib
+>>> fib(1000)
+0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987
+]]></script>
+
+<h2>Easy Documentation</h2>
+<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+def fib(n):
+  """
+  Compute the fibonacci series up to n
+  """
+  a, b = 0, 1
+  while a < n:
+    print a,
+    a, b = b, a+b
+  print
+]]></script>
+
+<p>Then the help is there:</p>
+
+<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+>>> help(fib)
+Help on function fib in module sequence:
+
+fib(n)
+    Compute the fibonacci series up to n
+]]></script>
+</div>
+
+<div class="slide">
+<h1>Why Do Beginners Struggle With Python?</h1>
+
+</div>
 
 
 <!--begin.rcode endit,echo=FALSE,result="hide", cache=FALSE
