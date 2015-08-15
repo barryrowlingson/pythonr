@@ -303,7 +303,9 @@ Why is my code so slooooowwww!!!!
 <script type="syntaxhighlighter" class="brush: python"><![CDATA[
 >>> 1 + 2 * 3
 7
->>>
+>>> a = 1 + 2 * 3
+>>> a
+7
 ]]></script>
 <h2>Modular</h2>
 <p>Functionality is more structured into modules:</p>
@@ -324,6 +326,8 @@ NameError: name 'sqrt' is not defined
 <p>There are "vectors" (called lists), but no implicit vectorisation:</p>
 <script type="syntaxhighlighter" class="brush: python"><![CDATA[
 >>> x = [ 1, 2, 4, 8, 16 ]
+>>> x
+[1, 2, 4, 8, 16]
 >>> math.sqrt(x)
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
@@ -397,6 +401,8 @@ def fib(n):
   print
 ]]></script>
 
+<p>Then the help is there:</p>
+
 <script type="syntaxhighlighter" class="brush: python"><![CDATA[
 >>> help(fib)
 Help on function fib in module sequence:
@@ -404,6 +410,40 @@ Help on function fib in module sequence:
 fib(n)
     Compute the fibonacci series up to n
 ]]></script>
+
+<h2>The Python Package Index</h2>
+<ul>
+<li>Over 60,000 Packages</li>
+<li>Install with <code>pip install whatever</code></li>
+</ul>
+</div>
+
+<div class="slide">
+<h1>Why Do Beginners Struggle With Python?</h1>
+<h2>Significant Whitespace</h2>
+<p>Some people shirk at spaces being important!</p>
+<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+def fun(x):
+   if x > 10:
+      print "more than 10 values"
+      for i in x:
+         print x
+   else:
+      print "small"
+   print "done"
+fun(99)
+]]></script>
+
+<h2>Installation</h2>
+<ul>
+<li>Initial Installation</li>
+<li>Package Installation</li>
+</ul>
+
+<h2>Discovery</h2>
+<p>Or "How Did You Find That Out?"</p>
+
+
 </div>
 
 
