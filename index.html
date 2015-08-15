@@ -302,7 +302,7 @@ Why is my code so slooooowwww!!!!
 
 <div class="slide">
 <h1>Python</h1>
-<h2>Interative</h2>
+<h2>Interactive</h2>
 <p>Its another REPL</p>
 <script type="syntaxhighlighter" class="brush: python"><![CDATA[
 >>> 1 + 2 * 3
@@ -370,8 +370,8 @@ TypeError: a float is required
 
 <div class="slide">
 <h1>Why Do People Fall In Love With Python?</h1>
+<h5>Obligatory xkcd.com cartoon</h5>
 <img class="mainpic" src="images/pythonflying.png" />
-
 <h2>Clean Syntax</h2>
 <p>Put this in a file called <code>sequence.py</code>:</p>
 <script type="syntaxhighlighter" class="brush: python"><![CDATA[
@@ -420,6 +420,86 @@ fib(n)
 <li>Over 60,000 Packages</li>
 <li>Install with <code>pip install whatever</code></li>
 </ul>
+
+<h2>Intended To Be A General Purpose Language</h2>
+<h3>Design Goals</h3>
+
+<ul>
+<li>an easy and intuitive language just as powerful as major competitors</li>
+<li>open source, so anyone can contribute to its development</li>
+<li>code that is as understandable as plain English</li>
+<li>suitability for everyday tasks, allowing for short development times</li>
+</ul>
+
+<p>In addition the design process via proposals (PEPs) is open and
+discussion is welcome.</p>
+
+<h2>One Way To Do It</h2>
+<p>
+"There should be one-- and preferably only one --obvious way to do it."
+</p>
+<p>For example, Python has one Object-oriented design system. R has about 6</p>
+<p>Define a class for pets and dogs:</p>
+<script  type="syntaxhighlighter" class="brush: python"><![CDATA[
+class Pet:
+   def __init__(self, name):
+      self.name = name
+   def call_me(self):
+      print "Say 'Here "+self.name+"!'"
+   def noise(self):
+      raise StandardError,"I am not a real pet"
+
+class Dog(Pet):
+   def __init__(self, name):
+      Pet.__init__(self,name)
+   def noise(self):
+      print "Woof!"
+]]></script>
+<p>Now create a dog and call some methods:</p>
+<script  type="syntaxhighlighter" class="brush: python"><![CDATA[
+>>> mydog = Dog("Archer")
+>>> mydog.name  # R: mydog$name
+'Archer'
+>>> mydog.call_me() # R: pet::call_me(mydog)
+Say 'Here Archer!'
+>>> mydog.noise()  # R: noise(mydog) if pet loaded
+Woof!   
+]]></script>
+
+<p>Easily create a list of dogs:</p>
+<script  type="syntaxhighlighter" class="brush: python"><![CDATA[
+>>> mydogs = [Dog(name) for name in ["Archer","Boo","Charlie"]]
+>>> mydogs[1].name
+'Boo'
+]]></script>
+<p>Call all my dogs:</p>
+<script  type="syntaxhighlighter" class="brush: python"><![CDATA[
+>>> [dog.call_me() for dog in mydogs]
+Say 'Here Archer!'
+Say 'Here Boo!'
+Say 'Here Charlie!'
+]]></script>
+
+<p>Cat class follows:</p>
+
+<script  type="syntaxhighlighter" class="brush: python"><![CDATA[
+class Cat(Pet):
+   def __init__(self,name):
+      Pet.__init__(self,name)
+   def call_me(self):
+      print "Puss puss puss"
+   def noise(self):
+      print "Meow"
+
+]]></script>
+<h2>Modularity</h2>
+<p>Put the pet code in <code>pet.py</code> and then any other
+code can:</p>
+<script  type="syntaxhighlighter" class="brush: python"><![CDATA[
+>>> import pet
+>>> mydog = pet.Dog("Fido")
+
+]]></script>
 </div>
 
 <div class="slide">
@@ -476,8 +556,51 @@ fun(99)
 <div class="slide">
 <h2>Leveraging Synergies</h2>
 <ul>
-<li>R package <code>rPython</code></li>
-<li>Python package <code>rpy2</code></li>
+<li>R package <code>rPython</code> - call python from R:
+<pre>
+python.call( "len", 1:3 )
+a <- 1:4
+b <- 5:8
+python.exec( "def concat(a,b): return a+b" )
+python.call( "concat", a, b)
+
+python.assign( "a",  "hola hola" )
+python.method.call( "a", "split", " " )
+</pre>
+</li>
+<li>Python package <code>rpy2</code> - call R from python:
+<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+>>> import rpy2.robjects as robjects
+>>> pi = robjects.r['pi']
+>>> pi[0]
+3.14159265358979
+]]></script>
+<p>Simple principle components analysis and plot:</p>
+<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+>>> import rpy2.robjects as robjects
+>>> r = robjects.r
+>>> m = r.matrix(r.rnorm(100), ncol=5)
+>>> pca = r.princomp(m)
+>>> r.plot(pca, main="Eigen values")
+>>> r.biplot(pca, main="biplot")
+]]></script>
+<p>More complex example, calling <code>ggplot2</code>:</p>
+<script type="syntaxhighlighter" class="brush: python"><![CDATA[
+>>> import rpy2.robjects.lib.ggplot2 as ggplot2
+>>> from rpy2.robjects.packages import importr, data
+>>> base = importr('base')
+>>> datasets = importr('datasets')
+>>> mtcars = data(datasets).fetch('mtcars')['mtcars']
+
+>>> pp = ggplot2.ggplot(mtcars) + \
+     ggplot2.aes_string(x='wt', y='mpg', col='factor(cyl)') + \
+     ggplot2.geom_point() + \
+     ggplot2.geom_smooth(ggplot2.aes_string(group = 'cyl'),
+                         method = 'lm')
+>>> pp.plot()
+]]></script>
+</li>
+
 </ul>
 </div>
 
@@ -510,6 +633,37 @@ fun(99)
 <li>Nostalgic Late Night Coding Reminding Me Of My Undergraduate Days...*sigh*</li>
 </ul>
 </div>
+
+<div class="slide">
+<h1>So which language should I learn?</h1>
+
+<p><em>Depends on what you are doing</em>, but you 
+are probably doing some of this:</p>
+<ul>
+<li>R for statistics - but Python catching up</li>
+<li>R for statistical graphics - but Python catching up</li>
+<li>R or Python for data mashing</li>
+<li>Python for web server programming</li>
+<li>C or C++ for speed</li>
+<li>Python or shell script for glue</li>
+<li>HTML/JS/CSS for web design</li>
+<li>Other languages are increasingly marginal:
+ <ul>
+   <li>Perl</li>
+   <li>Fortran</li>
+   <li>Matlab</li>
+   <li>Java</li>
+   <li>MS Visual Anything</li>
+ </ul>
+</li>
+<li>Keep an eye on Julia</li>
+</ul>
+</div>
+
+<div class="slide">
+<h1>So No More Fighting!</h1>
+</div>
+
 
 
 <!--script type="text/javascript" src="lib/jquery-2.1.3.min.js" ></script-->
